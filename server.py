@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return "Welcome to the Gaido Backend!"
+    return jsonify("Welcome to the Gaido Backend!")
 
 if __name__ == '__main__':
     app.run(debug=False)
