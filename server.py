@@ -16,13 +16,12 @@ def home():
 
 @app.route('/api/events', methods=['GET'])
 def get_events():
-    response = supabase.table('events').select('*').execute()
+    category = request.args.get('category')
+    if category:
+        response = supabase.table('events').select('*').eq('category', category).execute()
+    else:
+        response = supabase.table('events').select('*').execute()
     #return response.data
-    return jsonify(response.data)
-
-@app.route('/api/events/<category>', methods=['GET'])
-def get_cat(category):
-    response = supabase.table('events').select('*').eq('category', category).execute()
     return jsonify(response.data)
 
 if __name__ == '__main__':
