@@ -21,7 +21,6 @@ def get_events():
         response = supabase.table('events').select('*').eq('category', category).execute()
     else:
         response = supabase.table('events').select('*').execute()
-    #return response.data
     return jsonify(response.data)
 
 if __name__ == '__main__':
