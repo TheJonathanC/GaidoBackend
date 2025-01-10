@@ -18,8 +18,10 @@ def home():
 def get_events():
     category = request.args.get('category')
     if category:
+        print(category)
         response = supabase.table('events').select('*').eq('category', category).execute()
     else:
+        print("No category provided")
         response = supabase.table('events').select('*').execute()
     #return response.data
     return jsonify(response.data)
