@@ -20,6 +20,10 @@ def get_events():
     #return response.data
     return jsonify(response.data)
 
+@app.route('/api/events/<category>', methods=['GET'])
+def get_cat(category):
+    response = supabase.table('events').select('*').eq('category', category).execute()
+    return jsonify(response.data)
 
 if __name__ == '__main__':
     app.run(debug=False)
